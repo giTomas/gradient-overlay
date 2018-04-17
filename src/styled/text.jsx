@@ -9,7 +9,7 @@ const Text = styled.h1`
   ${'' /* color: ; */}
   top: 5px;
   left: 5px;
-  z-index: 100;
+  z-index: 1000;
 `;
 
 export default Text;

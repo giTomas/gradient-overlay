@@ -27,12 +27,10 @@ class App extends PureComponent {
     );
   }
 
-  toggleAnimation = (perc=this.state.percs, inProgres=this.state.inProgress) => {
-
+  toggleAnimation = (perc=this.state.percs, inProgress=this.state.inProgress) => {
     if (inProgress) {
       return;
     }
-
     if (perc === 100) {
       console.log(`100 === ${perc}, than Off`)
       this.animationOverlayOff()
