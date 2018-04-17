@@ -21,71 +21,115 @@ class App extends PureComponent {
   render() {
     return (
       <Background imgSrc={img}>
-        <Text>Click on {this.state.percs === 100 ? 'image' : 'yellow screen'}.</Text>
+        <Text>Click on {this.state.percs === 100 ? 'the image' : 'the yellow screen'}.</Text>
         <Overlay {...this.state} onClick={this.handleClick}/>
       </Background>
     );
   }
 
-  toggleAnimation = (perc=this.state.percs, inProgress=this.state.inProgress) => {
+  toggleAnimation = (percs=this.state.percs, inProgress=this.state.inProgress) => {
     if (inProgress) {
       return;
     }
-    if (perc === 100) {
-      console.log(`100 === ${perc}, than Off`)
+    // console.log('perc: ' + this.state.percs)
+    if (percs === 100) {
       this.animationOverlayOff()
     } else {
-      console.log(`${perc}%, than On`)
       this.animationOverlayOn()
     }
   }
 
-  delay = 1000/60
-  timing = 2
+  delay = 1000/50
+  duration = 500
 
-  animationOverlayOn = () => {
+  // animationOverlayOn = () => {
+  //   this.setState({
+  //     inProgress: true
+  //   });
+  //   let timer = setInterval(() => {
+  //     if (this.state.percs >= 100) {
+  //       clearInterval(timer);
+  //       this.setState({
+  //         inProgress: false
+  //       });
+  //       return;
+  //     }
+  //     // console.log(this.state.percs)
+  //     this.setState((prevState, props) => ({
+  //       percs: prevState.percs+2.5
+  //     }));
+  //   }, this.delay)
+  // }
+
+  animationOverlayOn = (delay=this.delay, duration=this.duration) => {
     this.setState({
       inProgress: true
     });
-    const delay = this.delay;
+    const start = Date.now();
+    // const duration = 750;
+    const step = 100/(duration/delay);
+
+
     let timer = setInterval(() => {
-      if (this.state.percs >= 100) {
+      const timePassed = Date.now() - start;
+      if (timePassed >= duration) {
         clearInterval(timer);
         this.setState({
-          inProgress: false
+          inProgress: false,
+          percs: 100
         });
         return;
       }
-      console.log(this.state.percs)
       this.setState((prevState, props) => ({
-        percs: prevState.percs+2.5
+        percs: prevState.percs+step
       }));
     }, delay)
   }
 
-  animationOverlayOff = () => {
-    const delay = this.delay;
+  animationOverlayOff = (delay=this.delay, duration=this.duration) => {
     this.setState({
       inProgress: true
     });
+    const start = Date.now();
+    const step = 100/(duration/delay);
+
     let timer = setInterval(() => {
-      if (this.state.percs <= 0) {
+      const timePassed = Date.now() - start;
+      if (timePassed >= duration) {
         clearInterval(timer)
         this.setState({
-          inProgress: false
+          inProgress: false,
+          percs: 0
         });
         return;
       }
-      console.log(this.state.percs)
+      // console.log(this.state.percs)
       this.setState((prevState, props) => ({
-        percs: prevState.percs-2.5
+        percs: prevState.percs-step
       }));
     }, delay)
   }
+  // animationOverlayOff = () => {
+  //   this.setState({
+  //     inProgress: true
+  //   });
+  //   let timer = setInterval(() => {
+  //     if (this.state.percs <= 0) {
+  //       clearInterval(timer)
+  //       this.setState({
+  //         inProgress: false,
+  //         percs: 0
+  //       });
+  //       return;
+  //     }
+  //     // console.log(this.state.percs)
+  //     this.setState((prevState, props) => ({
+  //       percs: prevState.percs-2.5
+  //     }));
+  //   }, this.delay)
+  // }
 
   handleClick = (e) => {
-    // console.log(e.clientX, e.clientY);
-
     this.setState({
       coords: {
         x: e.clientX,
@@ -94,7 +138,10 @@ class App extends PureComponent {
     })
     this.toggleAnimation()
   }
-
 }
+
+const step = (duration, finalState, delay) => (
+  duration / delay
+);
 
 export default App;
