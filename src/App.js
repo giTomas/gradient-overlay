@@ -21,7 +21,7 @@ class App extends PureComponent {
   render() {
     return (
       <Background imgSrc={img}>
-        <Text>Click on screen.</Text>
+        <Text>Click on {this.state.percs === 100 ? 'image' : 'yellow screen'}.</Text>
         <Overlay {...this.state} onClick={this.handleClick}/>
       </Background>
     );
@@ -85,13 +85,14 @@ class App extends PureComponent {
 
   handleClick = (e) => {
     // console.log(e.clientX, e.clientY);
-    this.toggleAnimation()
+
     this.setState({
       coords: {
         x: e.clientX,
         y: e.clientY
       }
     })
+    this.toggleAnimation()
   }
 
 }
