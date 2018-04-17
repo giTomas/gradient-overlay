@@ -13,7 +13,8 @@ class App extends PureComponent {
         x: 0,
         y: 0
       },
-      percs: 0
+      percs: 0,
+      inProgress: false
     }
   }
 
@@ -26,7 +27,12 @@ class App extends PureComponent {
     );
   }
 
-  toggleAnimation = (perc=this.state.percs) => {
+  toggleAnimation = (perc=this.state.percs, inProgres=this.state.inProgress) => {
+
+    if (inProgress) {
+      return;
+    }
+
     if (perc === 100) {
       console.log(`100 === ${perc}, than Off`)
       this.animationOverlayOff()
@@ -40,10 +46,16 @@ class App extends PureComponent {
   timing = 2
 
   animationOverlayOn = () => {
+    this.setState({
+      inProgress: true
+    });
     const delay = this.delay;
     let timer = setInterval(() => {
       if (this.state.percs >= 100) {
-        clearInterval(timer)
+        clearInterval(timer);
+        this.setState({
+          inProgress: false
+        });
         return;
       }
       console.log(this.state.percs)
@@ -55,9 +67,15 @@ class App extends PureComponent {
 
   animationOverlayOff = () => {
     const delay = this.delay;
+    this.setState({
+      inProgress: true
+    });
     let timer = setInterval(() => {
       if (this.state.percs <= 0) {
         clearInterval(timer)
+        this.setState({
+          inProgress: false
+        });
         return;
       }
       console.log(this.state.percs)
