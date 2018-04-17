@@ -36,7 +36,8 @@ class App extends PureComponent {
     }
   }
 
-  delay = 1000/75
+  delay = 1000/60
+  timing = 2
 
   animationOverlayOn = () => {
     const delay = this.delay;
@@ -47,7 +48,7 @@ class App extends PureComponent {
       }
       console.log(this.state.percs)
       this.setState((prevState, props) => ({
-        percs: prevState.percs+2
+        percs: prevState.percs+2.5
       }));
     }, delay)
   }
@@ -61,7 +62,7 @@ class App extends PureComponent {
       }
       console.log(this.state.percs)
       this.setState((prevState, props) => ({
-        percs: prevState.percs-2
+        percs: prevState.percs-2.5
       }));
     }, delay)
   }
