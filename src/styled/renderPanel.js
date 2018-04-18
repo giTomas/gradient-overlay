@@ -2,8 +2,6 @@ import styled from 'styled-components';
 import React from 'react';
 
 const Text = styled.h1`
-  margin: 0;
-  padding: 0;
   font-size: 1em;
   line-height: 1;
 `;
@@ -28,7 +26,6 @@ const Container = styled.div`
 
 const Form = styled.form`
   display: flex;
-  ${'' /* align-content: center; */}
   align-items: center;
 
 `;
@@ -40,7 +37,6 @@ const Label = styled.label`
 `;
 
 const Input = styled.input`
-  margin: 0;
   border: 0;
   outline: none;
   ${'' /* &:focus {

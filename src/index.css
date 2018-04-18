@@ -6,6 +6,11 @@ html {
   box-sizing: inherit
 }
 
+* {
+  border: 0;
+  padding: 0;
+}
+
 /* .clearfix:before,
 .clearfix:after {
   display: table
