@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import Background from './styled/background';
 import Overlay from './styled/overlay';
 import RenderPanel from './styled/renderPanel';
-import img from './images/jens-lelie-15662-unsplash.jpg';
+import img from './images/jens-lelie-15662-unsplash-crop.jpg';
 
 class App extends PureComponent {
   constructor(props) {
@@ -13,7 +13,7 @@ class App extends PureComponent {
         x: 0,
         y: 0
       },
-      percs: 0,
+      progress: 0,
       inProgress: false,
       duration: 750,
       delay: 1000/75
@@ -23,7 +23,7 @@ class App extends PureComponent {
   render() {
     return (
       <Background imgSrc={img}>
-        <RenderPanel percs={this.state.percs} duration={this.state.duration} onChangeHandler={this.handleOnChange}/>
+        <RenderPanel progress={this.state.progress} duration={this.state.duration} onChangeHandler={this.handleOnChange}/>
         <Overlay {...this.state} onClick={this.handleClick}/>
       </Background>
     );
@@ -36,12 +36,12 @@ class App extends PureComponent {
     })
   }
 
-  toggleAnimation = (percs=this.state.percs, inProgress=this.state.inProgress) => {
+  toggleAnimation = (progress=this.state.progress, inProgress=this.state.inProgress) => {
     if (inProgress) {
       return;
     }
-    // console.log('perc: ' + this.state.percs)
-    if (percs === 100) {
+    // console.log('perc: ' + this.state.progress)
+    if (progress === 100) {
       this.animationOverlayOff()
     } else {
       this.animationOverlayOn()
@@ -63,12 +63,12 @@ class App extends PureComponent {
         clearInterval(timer);
         this.setState({
           inProgress: false,
-          percs: 100
+          progress: 100
         });
         return;
       }
       this.setState((prevState, props) => ({
-        percs: prevState.percs+step
+        progress: prevState.progress+step
       }));
     }, delay)
   }
@@ -86,13 +86,13 @@ class App extends PureComponent {
         clearInterval(timer)
         this.setState({
           inProgress: false,
-          percs: 0
+          progress: 0
         });
         return;
       }
-      // console.log(this.state.percs)
+      // console.log(this.state.progress)
       this.setState((prevState, props) => ({
-        percs: prevState.percs-step
+        progress: prevState.progress-step
       }));
     }, delay)
   }

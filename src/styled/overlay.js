@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 const Overlay = styled.div.attrs({
-  style: ({coords, percs}) => ({
+  style: ({coords, progress}) => ({
     background: `radial-gradient(circle at ${coords.x}px ${coords.y}px,
-                transparent ${percs}%, yellow 0%)`
+                transparent ${progress}%, yellow 0%)`
   })
 })`
   position: absolute;
