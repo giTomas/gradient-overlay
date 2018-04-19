@@ -27,21 +27,22 @@ const Container = styled.div`
 
 const Form = styled.form`
   display: flex;
-  align-items: center;
+  ${'' /* align-items: cen; */}
   flex-direction: column;
   justify-content: center;
 `;
 
 const Label = styled.label`
-  font-size: 0.45em;
+  font-size: 0.3em;
   margin: 0;
-  padding: 0.5em 0 0 0;
+  padding: 0 0 0.75em 0;
 `;
 
 const Input = styled.input`
   -webkit-appearance: none;
   border: 0;
   outline: none;
+  margin: 0;
   &::-moz-focus-outer {
       border: 0;
   }
@@ -100,6 +101,7 @@ const RenderPanel = ({duration, progress, onChangeHandler, range}) => (
     <Text>Click on {progress === 100 ? 'the image' : 'the yellow screen'}.</Text>
 
     <Form>
+      <Label>Duration: {duration}ms</Label>
       <Input
         type="range"
         min={range.min}
@@ -107,7 +109,7 @@ const RenderPanel = ({duration, progress, onChangeHandler, range}) => (
         step={range.step}
         value={duration}
         onChange={onChangeHandler} />
-      <Label>Duration: {duration}ms</Label>
+
     </Form>
   </Container>
 )
