@@ -11,16 +11,20 @@ const Container = styled.div`
   justify-content: space-between;
   align-content: center;
   margin: 0.2em;
-  padding: 0.2em 0.4em;
-  background-color: rgb(255, 255, 255, 0.85);
+  padding: 0.4em;
+  ${'' /* background-color: rgb(255, 255, 255, 0.85); */}
+  background-color: rgb(193, 154, 107, 0.85);
+  background-color: rgb(1, 68, 33, 0.97);
+  background-color: rgb(245, 245, 220, 0.85);
+  ${'' /* color: white; */}
   font-size: calc(1em + 2vw);
-  font-family: sans-serif;
   position: absolute;
   z-index: 1000;
   bottom: 0;
   left: 0;
   right: 0;
-  box-shadow: 1px 1px 2px rgba(0,0,0,0.25);
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.15);
+  ${'' /* box-shadow: 1px 1px 2px rgba(193, 154, 107, 1); */}
   font-family: 'Oxygen', sans-serif;
   border-radius: 0.15em;
 `;
@@ -34,15 +38,14 @@ const Form = styled.form`
 
 const Label = styled.label`
   font-size: 0.3em;
-  margin: 0;
-  padding: 0 0 0.75em 0;
+  padding: 0 0 0.6em 0;
 `;
 
 const Input = styled.input`
   -webkit-appearance: none;
   border: 0;
   outline: none;
-  margin: 0;
+  padding: 0.6em 0 0 0;
   &::-moz-focus-outer {
       border: 0;
   }
@@ -71,9 +74,9 @@ const Input = styled.input`
   }
   &::-moz-range-track {
     width: 100%;
-    height: 0.5em;
+    height: 0.525em;
     cursor: pointer;
-    box-shadow: inset 2px 3px 3px #000000, inset -1px -1px 2px #0d0d0d;
+    box-shadow: inset 3px 3px 4px #000000, inset -1px -1px 1px #0d0d0d;
     ${'' /* box-shadow: inset 2px 3px 3px #000000, inset -1px -1px 2px grey; */}
     background: #a9a9a9;
     ${'' /* background: #d3d3d3; */}
@@ -96,9 +99,19 @@ const Input = styled.input`
   }
 `;
 
+// const msg = (progress) => {
+//   if (progress === 100) {
+//     return 'the image';
+//   }
+//   if (progress === 0 || progress < 100) {
+//     return 'the yellow screen';
+//   }
+// }
+
 const RenderPanel = ({duration, progress, onChangeHandler, range}) => (
   <Container>
     <Text>Click on {progress === 100 ? 'the image' : 'the yellow screen'}.</Text>
+    {/* <Text>Click on {msg(progress)}.</Text> */}
 
     <Form>
       <Label>Duration: {duration}ms</Label>
