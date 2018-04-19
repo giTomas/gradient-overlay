@@ -13,6 +13,11 @@ class App extends PureComponent {
         x: 0,
         y: 0
       },
+      range: {
+        min: "150",
+        max: "1350",
+        step: "150",
+      },
       progress: 0,
       inProgress: false,
       duration: 750,
@@ -23,7 +28,7 @@ class App extends PureComponent {
   render() {
     return (
       <Background imgSrc={img}>
-        <RenderPanel progress={this.state.progress} duration={this.state.duration} onChangeHandler={this.handleOnChange}/>
+        <RenderPanel {...this.state} onChangeHandler={this.handleOnChange}/>
         <Overlay {...this.state} onClick={this.handleClick}/>
       </Background>
     );
