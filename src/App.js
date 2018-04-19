@@ -3,8 +3,10 @@ import Background from './styled/background';
 import Overlay from './styled/overlay';
 import RenderPanel from './styled/renderPanel';
 import img from './images/jens-lelie-15662-unsplash-crop.jpg';
-import animate from './animation/_animate';
-import * as timing from './animation/_timing';
+// import animate from './animation/_animate';
+// import * as timing from './animation/_timing';
+// import * as ease from './animation/_ease';
+import animation from './animation/';
 
 class App extends PureComponent {
   constructor(props) {
@@ -57,9 +59,25 @@ class App extends PureComponent {
   toggleAnimation = (progress=this.state.progress, inProgress=this.state.inProgress) => {
     if (inProgress) return;
     if (progress === 100) {
-      animate({timing: timing.circ, draw: this.drawOverlayOff, duration: this.state.duration});
+      animation({
+        timing: "quad",
+        ease: "easeIn",
+        draw: this.drawOverlayOff,
+        duration: this.state.duration})()
+      // animate({
+      //   timing: ease.easeOut(timing.quad),
+      //   draw: this.drawOverlayOff,
+      //   duration: this.state.duration});
     } else {
-      animate({timing: timing['circ'], draw: this.drawOverlayOn, duration: this.state.duration})
+      animation({
+        timing: "quad",
+        ease: "easeOut",
+        draw: this.drawOverlayOn,
+        duration: this.state.duration})()
+        // animate({
+        //   timing: ease.easeIn(timing.quad),
+        //   draw: this.drawOverlayOn,
+        //   duration: this.state.duration});
     }
   }
 
