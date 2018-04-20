@@ -3,6 +3,7 @@
 ## animation
 https://javascript.info/js-animation
 https://www.w3.org/TR/animation-timing/
+https://drafts.csswg.org/web-animations/
 https://www.smashingmagazine.com/2011/10/quick-look-math-animations-javascript/
 https://www.smashingmagazine.com/2015/09/creating-cel-animations-with-svg/
 https://www.smashingmagazine.com/2014/11/the-state-of-animation-2014/
