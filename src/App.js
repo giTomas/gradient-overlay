@@ -3,10 +3,7 @@ import Background from './styled/background';
 import Overlay from './styled/overlay';
 import RenderPanel from './styled/renderPanel';
 import img from './images/jens-lelie-15662-unsplash-crop.jpg';
-// import animate from './animation/_animate';
-// import * as timing from './animation/_timing';
-// import * as ease from './animation/_ease';
-import animation from './animation/';
+import anim from './animation/';
 
 class App extends PureComponent {
   constructor(props) {
@@ -22,11 +19,14 @@ class App extends PureComponent {
         max: "1350",
         step: "150",
       },
+      anim: {
+        ease: 'in',
+        timing: 'quad',
+      },
       progress: 0,
       inProgress: false,
       duration: 750,
-      fromOverlay: false,
-      fromImage: false
+      state: 'OVERLAY',
     }
   }
 
@@ -40,10 +40,13 @@ class App extends PureComponent {
   }
 
   handleOnChange = ({target}) => {
-    // console.log(target.value)
     this.setState({
       duration: target.value
     })
+
+  //   this.setState((prevState, props) => ({
+  //       anim: {...prevState.anim, duration: target.value }
+  //     }));
   }
 
   handleClick = (e) => {
@@ -59,31 +62,21 @@ class App extends PureComponent {
   toggleAnimation = (progress=this.state.progress, inProgress=this.state.inProgress) => {
     if (inProgress) return;
     if (progress === 100) {
-      animation({
-        timing: "quad",
-        ease: "easeIn",
+      anim.animate({
+        timingKey: this.state.anim.timing,
+        easeKey: this.state.anim.ease,
         draw: this.drawOverlayOff,
-        duration: this.state.duration})()
-      // animate({
-      //   timing: ease.easeOut(timing.quad),
-      //   draw: this.drawOverlayOff,
-      //   duration: this.state.duration});
+        duration: this.state.duration})
     } else {
-      animation({
-        timing: "quad",
-        ease: "easeOut",
+      anim.animate({
+        timingKey: "quad",
+        easeKey: "outIn",
         draw: this.drawOverlayOn,
-        duration: this.state.duration})()
-        // animate({
-        //   timing: ease.easeIn(timing.quad),
-        //   draw: this.drawOverlayOn,
-        //   duration: this.state.duration});
+        duration: this.state.duration})
     }
   }
 
   drawOverlayOn = (progress) => {
-    // console.log('on progress: ' + progress*100)
-    // console.log('on inProgress: ' + (progress*100 < 100 || progress <= 0))
     const percents = progress * 100
     this.setState({
       progress: percents,
@@ -92,13 +85,11 @@ class App extends PureComponent {
   }
 
   drawOverlayOff = (progress) => {
-    // console.log('off progress: ' + ((1 - progress)*100))
-    // console.log('off inProgress: ' +  ((1- progress) > 0))
-    // console.log('arg rogress: ' + progress)
-    const fr = 1 - progress
+    // const fr = 1 - progress;
+    const percents = (1 - progress)*100
     this.setState({
-      progress: fr * 100,
-      inProgress:  fr > 0
+      progress: percents,
+      inProgress:  percents > 0
     });
   }
 }
