@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import Background from './styled/background';
 import Overlay from './styled/overlay';
-import RenderPanel from './styled/renderPanel';
+import RenderPanel from './styled/panel';
 import img from './images/jens-lelie-15662-unsplash-crop.jpg';
 import anim from './animation/';
 
@@ -10,18 +10,12 @@ class App extends PureComponent {
     super(props);
 
     this.state = {
-      coords: {
-        x: 0,
-        y: 0
-      },
-      range: {
-        min: "150",
-        max: "1350",
-        step: "150",
-      },
+      coords: { x: 0, y: 0 },
+      ease: anim.ease,
+      timing: anim.timing,
       anim: {
-        ease: 'in',
-        timing: 'quad',
+        ease: anim.ease[0],
+        timing: anim.timing[0],
       },
       progress: 0,
       inProgress: false,
@@ -33,35 +27,43 @@ class App extends PureComponent {
   render() {
     return (
       <Background imgSrc={img}>
-        <RenderPanel {...this.state} onChangeHandler={this.handleOnChange}/>
+        <RenderPanel
+          {...this.state}
+          onChangeRangeHandler={this.handleOnChangeRange}
+          onChangeRadionHandler={this.handleOnChangeRadio}
+        />
         <Overlay {...this.state} onClick={this.handleClick}/>
       </Background>
     );
   }
 
-  handleOnChange = ({target}) => {
+  handleOnChangeRange = ({target}) => {
     this.setState({
       duration: target.value
     })
-
-  //   this.setState((prevState, props) => ({
-  //       anim: {...prevState.anim, duration: target.value }
-  //     }));
   }
 
-  handleClick = (e) => {
+  handleOnChangeRadio = (type) => ({target}) => {
+    this.setState((prevState, props) => ({
+        anim: {...prevState.anim, [type]: target.value }
+    }));
+    // console.log(type)
+    // setTimeout(()=>{console.log(this.state.anim)}, 100)
+  }
+
+  handleClick = ({clientX, clientY}) => {
     this.setState({
       coords: {
-        x: e.clientX,
-        y: e.clientY
+        x: clientX,
+        y: clientY
       }
     })
     this.toggleAnimation()
   }
 
-  toggleAnimation = (progress=this.state.progress, inProgress=this.state.inProgress) => {
-    if (inProgress) return;
-    if (progress === 100) {
+  toggleAnimation = () => {
+    if (this.state.inProgress) return;
+    if (this.state.progress === 100) {
       anim.animate({
         timingKey: this.state.anim.timing,
         easeKey: this.state.anim.ease,
@@ -69,15 +71,15 @@ class App extends PureComponent {
         duration: this.state.duration})
     } else {
       anim.animate({
-        timingKey: "quad",
-        easeKey: "outIn",
+        timingKey: this.state.anim.timing,
+        easeKey: this.state.anim.ease,
         draw: this.drawOverlayOn,
         duration: this.state.duration})
     }
   }
 
   drawOverlayOn = (progress) => {
-    const percents = progress * 100
+    const percents = progress * 100;
     this.setState({
       progress: percents,
       inProgress: percents < 100
@@ -85,8 +87,7 @@ class App extends PureComponent {
   }
 
   drawOverlayOff = (progress) => {
-    // const fr = 1 - progress;
-    const percents = (1 - progress)*100
+    const percents = (1 - progress) * 100;
     this.setState({
       progress: percents,
       inProgress:  percents > 0

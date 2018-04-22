@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import React from 'react';
 
 const Text = styled.h1`
+  display: flex;
+  align-items: center;
   font-size: 1em;
   line-height: 1;
 `;
@@ -13,10 +15,9 @@ const Container = styled.div`
   margin: 0.2em;
   padding: 0.4em;
   ${'' /* background-color: rgb(255, 255, 255, 0.85); */}
-  background-color: rgb(193, 154, 107, 0.85);
-  background-color: rgb(1, 68, 33, 0.97);
+  ${'' /* background-color: rgb(193, 154, 107, 0.85);
+  background-color: rgb(1, 68, 33, 0.97); */}
   background-color: rgb(245, 245, 220, 0.85);
-  ${'' /* color: white; */}
   font-size: calc(1em + 2vw);
   position: absolute;
   z-index: 1000;
@@ -32,16 +33,31 @@ const Container = styled.div`
 const Form = styled.form`
   display: flex;
   ${'' /* align-items: cen; */}
+`;
+
+const Fieldset = styled.fieldset`
+  display: flex;
+  margin-left: 0.4em;
+  ${'' /* align-items: cen; */}
   flex-direction: column;
-  justify-content: center;
+  border: 0;
+  ${'' /* justify-content: center; */}
 `;
 
-const Label = styled.label`
+const Legend = styled.legend`
+  margin-bottom: 0.4em;
+  font-size: 0.4em;
+  font-weight: bold;
+`;
+
+const RangeLabel = styled.label`
   font-size: 0.3em;
-  padding: 0 0 0.6em 0;
+  margin-bottom: 0.6em;
 `;
 
-const Input = styled.input`
+const Range = styled.input.attrs({
+  type: 'range'
+})`
   -webkit-appearance: none;
   border: 0;
   outline: none;
@@ -88,25 +104,83 @@ const Input = styled.input`
     box-shadow: inset 3px 3px 4px #000000, inset -1px -1px 1px #0d0d0d;
     background: #a9a9a9;
     border-radius: 0.5em;
-    ${'' /* border: 0.2px solid #010101; */}
   }
   &:focus::-webkit-slider-runnable-track {
     background: #a9a9a9;;
   }
 `;
 
-const RenderPanel = ({duration, progress, onChangeHandler, range}) => (
+const RadioLabel = styled.label`
+  position: relative;
+  font-size: 0.3em;
+  margin-bottom: 0.1em;
+  display: flex;
+  align-items: center
+`;
+
+const List = styled.ul`
+  list-style: none;
+`;
+
+const Item = styled.li`
+
+`;
+
+const RadioButton = styled.input.attrs({
+  type: 'radio',
+})`
+  margin-right: 0.3em;
+  border: 0;
+  outline: none;
+  ${'' /* visibility: hidden; */}
+  }
+  ${'' /* display: none; */}
+`;
+
+const Choices = ({
+  items,
+  state,
+  handleChange}) => (
+    <List>
+      {items.map(choice => (
+        // <RadioButton key={choice} choice={choice} state={state} handleChange={handleChange}/>
+        <Item key={choice}>
+          <RadioLabel>
+            <RadioButton
+              value={choice}
+              checked={choice === state}
+              onChange={handleChange}/>
+            {choice}
+          </RadioLabel>
+        </Item>
+      ))}
+    </List>
+);
+
+// const timingChoices = ({ease, handleChange}) => ();
+
+const RenderPanel = ({ease, timing, anim, duration, progress, onChangeRangeHandler, onChangeRadionHandler}) => (
   <Container>
     <Text>Click on {progress === 100 ? 'the image' : 'the yellow screen'}.</Text>
     <Form>
-      <Label>Duration: {duration}ms</Label>
-      <Input
-        type="range"
-        min={range.min}
-        max={range.max}
-        step={range.step}
-        value={duration}
-        onChange={onChangeHandler} />
+      <Fieldset>
+        <Legend>Timing:</Legend>
+        <Choices items={timing} state={anim.timing} handleChange={onChangeRadionHandler('timing')}/>
+      </Fieldset>
+      <Fieldset>
+        <Legend>Ease:</Legend>
+        <Choices items={ease} state={anim.ease} handleChange={onChangeRadionHandler('ease')}/>
+      </Fieldset>
+      <Fieldset>
+        <Legend>Duration:</Legend>
+        <RangeLabel>{duration}ms</RangeLabel>
+        <Range
+          min="150"
+          max="1350"
+          step="150"
+          value={duration}
+          onChange={onChangeRangeHandler} />
+      </Fieldset>
     </Form>
   </Container>
 )
