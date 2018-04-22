@@ -1,7 +1,9 @@
 import React, { PureComponent } from 'react';
-import Background from './styled/background';
-import Overlay from './styled/overlay';
-import RenderPanel from './styled/panel';
+// import Background from './styled/background';
+// import Overlay from './styled/overlay';
+// import RenderPanel from './styled/panel';
+import {Background, Overlay, Panel} from './styled';
+import {initialState} from './finiteStateMachine';
 import img from './images/jens-lelie-15662-unsplash-crop.jpg';
 import anim from './animation/';
 
@@ -20,14 +22,14 @@ class App extends PureComponent {
       progress: 0,
       inProgress: false,
       duration: 750,
-      state: 'OVERLAY',
+      uiState: initialState
     }
   }
 
   render() {
     return (
       <Background imgSrc={img}>
-        <RenderPanel
+        <Panel
           {...this.state}
           onChangeRangeHandler={this.handleOnChangeRange}
           onChangeRadionHandler={this.handleOnChangeRadio}
@@ -84,6 +86,8 @@ class App extends PureComponent {
       progress: percents,
       inProgress: percents < 100
     });
+
+    // set state OVERLAY || FROMIMAGE and animation progress
   }
 
   drawOverlayOff = (progress) => {
@@ -92,6 +96,8 @@ class App extends PureComponent {
       progress: percents,
       inProgress:  percents > 0
     });
+
+   // set state IMAGE || FROMOVERLAY and animation progress
   }
 }
 

@@ -159,7 +159,7 @@ const Choices = ({
 
 // const timingChoices = ({ease, handleChange}) => ();
 
-const RenderPanel = ({ease, timing, anim, duration, progress, onChangeRangeHandler, onChangeRadionHandler}) => (
+const Panel = ({ease, timing, anim, duration, progress, onChangeRangeHandler, onChangeRadionHandler}) => (
   <Container>
     <Text>Click on {progress === 100 ? 'the image' : 'the yellow screen'}.</Text>
     <Form>
@@ -185,4 +185,4 @@ const RenderPanel = ({ease, timing, anim, duration, progress, onChangeRangeHandl
   </Container>
 )
 
-export default RenderPanel;
+export default Panel;
