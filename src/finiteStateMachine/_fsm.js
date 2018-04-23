@@ -4,8 +4,8 @@ const stateMachine = {
   'states': {
     'IMAGE': {'startAnimation': 'FROMIMAGE'},
     'OVERLAY': {'startAnimation': 'FROMOVERLAY'},
-    'FROMOVERLAY': {'endAnimation': 'IMAGE' },
-    'FROMIMAGE': {'endAnimation': 'OVERLAY'},
+    'FROMOVERLAY': {'endAnimation': 'IMAGE', 'progress': 'FROMOVERLAY' },
+    'FROMIMAGE': {'endAnimation': 'OVERLAY',  'progress': 'FROMIMAGE'},
   }
 };
 

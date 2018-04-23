@@ -67,7 +67,7 @@ class App extends PureComponent {
     this.execCmd(newUiState);
   }
 
-  execCmd = (uiState, action) => {
+  execCmd = (uiState, action={}) => {
 
      // if (uiState === undefined) throw new Error('!')
      // console.log('newstate: ' + uiState);

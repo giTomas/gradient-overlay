@@ -160,9 +160,17 @@ const Choices = ({
 
 // const timingChoices = ({ease, handleChange}) => ();
 
-const Panel = ({ease, timing, anim, duration, progress, onChangeRangeHandler, onChangeRadionHandler}) => (
+const msg = {
+  'IMAGE': 'the image',
+  'OVERLAY': 'the yellow screen',
+  'FROMIMAGE': 'nothing',
+  'FROMOVERLAY': 'nothing'
+}
+
+const Panel = ({ease, timing, anim, duration, uiState, onChangeRangeHandler, onChangeRadionHandler}) => (
   <Container>
-    <Text>Click on {progress === 100 ? 'the image' : 'the yellow screen'}.</Text>
+    {/* <Text>Click on {progress === 100 ? 'the image' : 'the yellow screen'}.</Text> */}
+    <Text>Click on {msg[uiState]}.</Text>
     <Form>
       <Fieldset>
         <Legend>Timing:</Legend>
