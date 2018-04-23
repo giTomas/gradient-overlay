@@ -149,6 +149,7 @@ const Choices = ({
             <RadioButton
               value={choice}
               checked={choice === state}
+              // disabled=""
               onChange={handleChange}/>
             {choice}
           </RadioLabel>
@@ -179,7 +180,8 @@ const Panel = ({ease, timing, anim, duration, progress, onChangeRangeHandler, on
           max="1350"
           step="150"
           value={duration}
-          onChange={onChangeRangeHandler} />
+          onChange={onChangeRangeHandler}
+          disabled=""/>
       </Fieldset>
     </Form>
   </Container>

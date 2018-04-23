@@ -14,18 +14,28 @@ const statesAct = [
   ['FROMOVERLAY', 'startAnimation']
 ]
 
-describe('Should return correct state', () => {
+// describe('Should return correct state', () => {
+//
+//   for (let states of statesActRes) {
+//     const [init, act, res] = states;
+//     test(`Should return correct state ${res}`, () => {
+//       expect(transition(`${init}`, `${act}`)).toEqual(expect.arrayContaining(states));
+//     })
+//   }
+//
+//   for (let [init, act] of statesAct) {
+//     test(`Should return undefined`, () => {
+//       expect(transition(`${init}`, `${act}`)).toBeUndefined();
+//     })
+//   }
+// });
 
-  // for (let [init, act, res] of statesActRes) {
-  //   test(`Should return correct state ${res}`, () => {
-  //     expect(transition(`${init}`, `${act}`)).toMatch(`${res}`);
-  //   })
-  // }
+describe('Should return correct state', () => {
 
   for (let states of statesActRes) {
     const [init, act, res] = states;
     test(`Should return correct state ${res}`, () => {
-      expect(transition(`${init}`, `${act}`)).toEqual(expect.arrayContaining(states));
+      expect(transition(`${init}`, `${act}`)).toMatch(res);
     })
   }
 

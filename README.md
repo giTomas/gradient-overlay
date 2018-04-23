@@ -1,6 +1,8 @@
 # gradient overlay
 
 ## animation
+https://css-tricks.com/emulating-css-timing-functions-javascript/
+
 https://javascript.info/js-animation
 https://www.w3.org/TR/animation-timing/
 https://drafts.csswg.org/web-animations/
@@ -9,6 +11,7 @@ https://www.smashingmagazine.com/2015/09/creating-cel-animations-with-svg/
 https://www.smashingmagazine.com/2014/11/the-state-of-animation-2014/
 https://css-tricks.com/guide-svg-animations-smil/
 https://markus.oberlehner.net/blog/pure-css-animated-svg-circle-chart/
+
 
 ## svg
 https://css-tricks.com/creating-star-heart-animation-svg-vanilla-javascript/

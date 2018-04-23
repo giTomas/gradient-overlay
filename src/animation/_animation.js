@@ -9,6 +9,7 @@ export class Animation {
     const timing = this._makeEaseTiming(timingKey, easeKey)
     let start = performance.now();
     requestAnimationFrame(function animate(time) {
+
       let timeFraction = (time-start)/duration;
       if (timeFraction > 1) {
         timeFraction = 1
@@ -18,7 +19,7 @@ export class Animation {
       if (timeFraction < 1) {
         requestAnimationFrame(animate);
       }
-    })
+    });
   }
 
   _getKeys(name) {
@@ -45,7 +46,7 @@ export class Animation {
     linear:   fr => fr,
     quad:    (fr, x=2.5) => Math.pow(fr, x),
     circ:     fr =>  1 - Math.sin(Math.acos(fr)),
-    back:    (fr, x=5) => (Math.pow(fr, 2) * ((x + 1) * fr - x)),
+    // back:    (fr, x=5) => (Math.pow(fr, 2) * ((x + 1) * fr - x)),
     // bounce:   fr => {}
   }
 
