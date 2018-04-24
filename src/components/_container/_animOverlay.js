@@ -99,23 +99,23 @@ class AnimOverlay extends PureComponent {
      }
   }
 
-  toggleAnimation = () => {
-    if (this.state.inProgress) return;
-    if (this.state.progress === 100) {
-      anim.animate({
-        timingKey: this.state.anim.timing,
-        easeKey: this.state.anim.ease,
-        draw: this.drawOverlayOn,
-        duration: this.state.duration})
-      // setTimeout(() => {console.log('stop'); anim.stop()}, 250)
-    } else {
-      anim.animate({
-        timingKey: this.state.anim.timing,
-        easeKey: this.state.anim.ease,
-        draw: this.drawOverlayOff,
-        duration: this.state.duration})
-    }
-  }
+  // toggleAnimation = () => {
+  //   if (this.state.inProgress) return;
+  //   if (this.state.progress === 100) {
+  //     anim.animate({
+  //       timingKey: this.state.anim.timing,
+  //       easeKey: this.state.anim.ease,
+  //       draw: this.drawOverlayOn,
+  //       duration: this.state.duration})
+  //     // setTimeout(() => {console.log('stop'); anim.stop()}, 250)
+  //   } else {
+  //     anim.animate({
+  //       timingKey: this.state.anim.timing,
+  //       easeKey: this.state.anim.ease,
+  //       draw: this.drawOverlayOff,
+  //       duration: this.state.duration})
+  //   }
+  // }
 
   drawOverlayOff = (progress) => {
     const percents = progress * 100;

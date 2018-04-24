@@ -13,7 +13,8 @@ class AnimGradient1 extends PureComponent {
   }
  }
 
- _draw = (progress) => {
+ _draw = (k) => {
+   const progress = +(k * 100).toFixed(2);
    this.setState({progress})
  }
 

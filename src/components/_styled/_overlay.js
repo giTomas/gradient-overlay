@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const Overlay = styled.div.attrs({
   style: ({coords, progress}) => ({
     background: `radial-gradient(circle at ${coords.x}px ${coords.y}px,
-                transparent ${progress}%, yellow 0%)`
+                transparent ${progress}%, #FCE883 0%)`
   })
 })`
   position: absolute;
@@ -11,6 +11,7 @@ const Overlay = styled.div.attrs({
   left: 0;
   bottom: 0;
   right: 0;
+  cursor: crosshair;
 `;
 
 export default Overlay;

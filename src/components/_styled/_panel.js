@@ -162,7 +162,7 @@ const Choices = ({
 
 const msg = {
   'IMAGE': 'Click on the image!',
-  'OVERLAY': 'Click on the yellow screen!',
+  'OVERLAY': 'Click on the screen!',
   'FROMIMAGE': 'Animation!',
   'FROMOVERLAY': 'Animation!'
 }

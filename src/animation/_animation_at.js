@@ -23,8 +23,8 @@ export class Animation_at {
     this._f += this._dir
     let k = this._f/this._NF
 
-    let progress = +(k * 100).toFixed(2)
-    this._draw(progress);
+    // let progress = +(k * 100).toFixed(2);
+    this._draw(k);
 
     if(!(this._f % this._NF)) {
       this.stopAni();
