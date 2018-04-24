@@ -12,6 +12,9 @@ https://www.smashingmagazine.com/2014/11/the-state-of-animation-2014/
 https://css-tricks.com/guide-svg-animations-smil/
 https://markus.oberlehner.net/blog/pure-css-animated-svg-circle-chart/
 
+## clip-path
+https://css-tricks.com/methods-contrasting-text-backgrounds/#note1
+
 
 ## svg
 https://css-tricks.com/creating-star-heart-animation-svg-vanilla-javascript/

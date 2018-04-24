@@ -9,14 +9,14 @@ const stateMachine = {
   }
 };
 
-const stateMachine2 = {
-  'initialState': 'OVERLAY',
-  'states': {
-    'IMAGE': 'FROMIMAGE',
-    'OVERLAY': 'FROMOVERLAY',
-    'FROMOVERLAY': 'IMAGE',
-    'FROMIMAGE': 'OVERLAY'
-  }
-};
+// const stateMachine2 = {
+//   'initialState': 'OVERLAY',
+//   'states': {
+//     'IMAGE': 'FROMIMAGE',
+//     'OVERLAY': 'FROMOVERLAY',
+//     'FROMOVERLAY': 'IMAGE',
+//     'FROMIMAGE': 'OVERLAY'
+//   }
+// };
 
 export default stateMachine;
