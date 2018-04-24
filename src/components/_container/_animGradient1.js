@@ -7,7 +7,7 @@ class AnimGradient1 extends PureComponent {
     super(props);
 
     // do tehe binding
-    this.anim = new Animation_at(this._draw);
+    this.anim = new Animation_at(this._draw, 70);
     this.state = {
         progress: 0
   }
