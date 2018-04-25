@@ -1,15 +1,16 @@
 import React, { PureComponent } from 'react';
-import {Gradient2} from '../_styled';
-import {Animation_at} from '../../animation/';
+import {Gradient3} from '../_styled';
+import {Animation_at2} from '../../animation/';
 
-class AnimGradient2 extends PureComponent {
+class AnimGradient3 extends PureComponent {
   constructor(props) {
     super(props);
 
     // do tehe binding
-    this.anim = new Animation_at(this._draw, 50);
+    this.anim = new Animation_at2(this._draw, 50);
     this.state = {
         progress: 0,
+        colorSwap: true,
   }
  }
 
@@ -19,14 +20,14 @@ class AnimGradient2 extends PureComponent {
 
   render() {
     return (
-      <Gradient2 onClick={this.onClickHandler} progress={this.state.progress}/>
+      <Gradient3 onClick={this.onClickHandler} progress={this.state.progress} colorSwap={this.state.colorSwap}/>
       //  <h1 onClick={this.onClickHandler}>Progress: {this.state.progress}</h1>
     );
   }
 
   onClickHandler = () => {
-    this.anim.animate(this._draw);
+    this.anim.animate();
   }
 }
 
-export default AnimGradient2;
+export default AnimGradient3;

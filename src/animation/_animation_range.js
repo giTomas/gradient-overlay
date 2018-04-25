@@ -1,12 +1,12 @@
-export class Animation_at {
+export class Animation_range {
   constructor(draw, nf=50) {
     this._draw = draw;
     this._NF = nf;
   }
 
   animate() {
-    if (this._rID) this.stopAni();
-    this._dir *= -1;
+    if (this._rID) this._stopAni;
+    dir *= -1;
     this._update()
   }
 
@@ -14,20 +14,21 @@ export class Animation_at {
   _f = 0
   _dir = -1
 
-  stopAni() {
+  _stopAni() {
     cancelAnimationFrame(this._rID);
     this._rID = null;
   }
 
   _update = () => {
-    this._f += this._dir
-    let k = this._f/this._NF
+    this._f += this._dir;
+    let this._k = f/this._NF
 
-    let progress = +(k * 100).toFixed(2);
+
+    let progress = +(k*100).toFixed(2);
     this._draw({progress});
 
     if(!(this._f % this._NF)) {
-      this.stopAni();
+      this._stopAni();
       return;
     }
 
@@ -35,4 +36,4 @@ export class Animation_at {
   }
 };
 
-export default Animation_at;
+export default Animation_range;

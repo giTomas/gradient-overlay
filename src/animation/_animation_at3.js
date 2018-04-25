@@ -1,4 +1,4 @@
-export class Animation_at {
+export class Animation_at3 {
   constructor(draw, nf=50) {
     this._draw = draw;
     this._NF = nf;
@@ -20,11 +20,11 @@ export class Animation_at {
   }
 
   _update = () => {
-    this._f += this._dir
+    this._f += this._dir;
     let k = this._f/this._NF
 
-    let progress = +(k * 100).toFixed(2);
-    this._draw({progress});
+    let angle = +(k*180).toFixed(2);
+    this._draw({angle});
 
     if(!(this._f % this._NF)) {
       this.stopAni();
@@ -35,4 +35,4 @@ export class Animation_at {
   }
 };
 
-export default Animation_at;
+export default Animation_at3;

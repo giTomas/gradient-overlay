@@ -1,32 +1,32 @@
 import React, { PureComponent } from 'react';
-import {Gradient} from '../_styled';
+import {GradientRadial} from '../_styled';
 import {Animation_at} from '../../animation/';
 
-class AnimGradient1 extends PureComponent {
+class AnimGradient6 extends PureComponent {
   constructor(props) {
     super(props);
 
     // do tehe binding
     this.anim = new Animation_at(this._draw, 70);
     this.state = {
-        progress: 0
+      progress: 100
   }
  }
 
- _draw = (result) => {
-   this.setState( (prevState, props) => ({ ...prevState, ...result}));
+ _draw = (progress) => {
+   this.setState( (prevState, props) => ({ ...prevState, ...progress}));
  }
 
   render() {
     return (
-      <Gradient onClick={this.onClickHandler} progress={this.state.progress}/>
+      <GradientRadial onClick={this.onClickHandler} progress={this.state.progress}/>
       //  <h1 onClick={this.onClickHandler}>Progress: {this.state.progress}</h1>
     );
   }
 
   onClickHandler = () => {
-    this.anim.animate(this._draw);
+    this.anim.animate();
   }
 }
 
-export default AnimGradient1;
+export default AnimGradient6;
