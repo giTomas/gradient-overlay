@@ -13,21 +13,23 @@ var NF = 50;
 var f = 1;
 var duration = 2000
 
-function update(timestamp) {
-  if (!start) start = timestamp;
-  var progress = ((timestamp - start) / duration).toFixed(2);
-  
-  if (progress > 0.5) {
-    console.log('stop');
+function anim() {
+
+  function update(timestamp) {
+    if (!start) start = timestamp;
+    var progress = ((timestamp - start) / duration).toFixed(3);
+
+    if (progress > 0.5) {
+      console.log('stop');
+    }
+    if (progress < 1) {
+      rID = requestAnimationFrame(update);
+    };
+    console.log(progress);
   }
-  if (progress < 1) {
-    rID = requestAnimationFrame(update);
-  };
-  console.log(progress);
   
-
-  
-
+  rID = requestAnimationFrame(update);
 }
 
-rID = requestAnimationFrame(update);
+anim();
+
