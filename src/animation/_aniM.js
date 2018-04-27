@@ -12,7 +12,7 @@ class AniM {
   _rID = null;
   _f = 1;
   _duration = 2000;
-  _timingFn = null;
+  _timingEaseFn = null;
   // _dir = -1;
 
   startAni = ({duration, draw, timingKey, easeKey}) => {
@@ -27,12 +27,8 @@ class AniM {
 
   stopAni = () => {
     window.cancelAnimationFrame(this._rID);
-    // console.log('stop:' + this._rID);
-    // console.log('stop:' + this._start);
     this._rID = null;
     this._start = null;
-    // console.log('stop:' + this._rID);
-    // console.log('stop:' + this._start);
   }
 
   _update = (timestamp) => {
@@ -45,21 +41,13 @@ class AniM {
       fraction= 1
     };
 
-    let progress = this._timingFn(fraction);
+    let progress = this._timingEaseFn(fraction);
     // this._draw(progress*this._dir);
     this._draw(progress);
 
     if (fraction < 1) {
       this._rID  = window.requestAnimationFrame(this._update);
     }
-
-
-
-    // if (progress < 1) {
-    //   = window.requestAnimationFrame(this._update);
-    //   // this._draw(progress)
-    //   this._draw(progress)
-    // };
   }
 
   _ease = {
@@ -73,16 +61,6 @@ class AniM {
     quad:  (fr, x=2.5) => Math.pow(fr, x),
     circ:   fr =>  1 - Math.sin(Math.acos(fr)),
     sine: fr => Math.sin(Math.PI*fr),
-    // sine: fr => {
-    //   let counter = 0;      // 100 iterations
-    //   let increase = Math.PI / 100;
-    //
-    //   for ( i = 0; i <= 1; i += 0.01 ) {
-    //     x = i;
-    //     y = Math.sin(counter);
-    //     counter += increase;
-    //   }
-    // }
   }
 
   _getKeys = (name) => {
@@ -96,7 +74,7 @@ class AniM {
   _makeEaseTiming = (timingKey, easeKey) => {
     const easeFn = this._ease[this._checkKey(this._ease, easeKey)];
     const timingFn = this._timing[this._checkKey(this._timing, timingKey)];
-    this._timingFn = easeFn(timingFn);
+    this._timingEaseFn = easeFn(timingFn);
   }
 
   _checkKey = (keys, key) => {

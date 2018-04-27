@@ -2,10 +2,22 @@
 const stateMachine = {
   'initialState': 'OVERLAY',
   'states': {
-    'IMAGE': {'startAnimation': 'FROMIMAGE'},
-    'OVERLAY': {'startAnimation': 'FROMOVERLAY'},
-    'FROMOVERLAY': {'endAnimation': 'IMAGE', 'progress': 'FROMOVERLAY' },
-    'FROMIMAGE': {'endAnimation': 'OVERLAY',  'progress': 'FROMIMAGE'},
+    'IMAGE': {
+      'startAnimation': 'FROMIMAGE'
+    },
+    'OVERLAY': {
+      'startAnimation': 'FROMOVERLAY'
+    },
+    'FROMOVERLAY': {
+      'endAnimation': 'IMAGE',
+      'progress': 'FROMOVERLAY',
+      'back': 'OVERLAY'
+     },
+    'FROMIMAGE': {
+      'endAnimation': 'OVERLAY',
+      'progress': 'FROMIMAGE',
+      'back': 'IMAGE' 
+    },
   }
 };
 

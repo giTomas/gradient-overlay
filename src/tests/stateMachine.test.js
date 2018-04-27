@@ -6,15 +6,19 @@ const statesActRes = [
   ['OVERLAY', 'startAnimation', 'FROMOVERLAY'],
   ['FROMOVERLAY', 'endAnimation', 'IMAGE'],
   ['FROMIMAGE', 'progress', 'FROMIMAGE'],
-  ['FROMOVERLAY', 'progress', 'FROMOVERLAY']
+  ['FROMOVERLAY', 'progress', 'FROMOVERLAY'],
+  ['FROMOVERLAY', 'back', 'OVERLAY'],
+  ['FROMIMAGE', 'back', 'IMAGE'],
 ]
 
 const statesAct = [
   ['IMAGE', 'endAnimation'],
   ['IMAGE', 'progress'],
+  ['IMAGE', 'back'],
   ['FROMIMAGE', 'startAnimation'],
   ['OVERLAY', 'endAnimation'],
   ['OVERLAY', 'progress'],
+  ['OVERLAY', 'back'],
   ['FROMOVERLAY', 'startAnimation']
 ]
 

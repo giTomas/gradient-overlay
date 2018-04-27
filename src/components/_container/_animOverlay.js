@@ -145,16 +145,18 @@ class AnimOverlay extends PureComponent {
       // inProgress: percents < 100,
       // uiState: percents < 100 ? 'FROMVERLAY' : 'IMAGE'
     });
-
+    console.log('%: ' + percents);
     if (percents >= 100) {
-      // console.log('after anim: ' + this.state.uiState);
+      console.log('after anim: ' + this.state.uiState);
       const uiState = transition(this.state.uiState, 'endAnimation')
       this.execCmd(uiState);
+      console.log('after anim: ' + this.state.uiState);
     }
     // if (percents <= 0) {
-    //   // console.log('after anim' + this.state.uiState);
-    //   const uiState = transition(this.state.uiState, 'endAnimation');
+    //   console.log('after anim: ' + this.state.uiState);
+    //   const uiState = transition(this.state.uiState, 'back');
     //   this.execCmd(uiState);
+    //   console.log('after anim: ' + this.state.uiState);
     // }
   }
 
@@ -165,16 +167,18 @@ class AnimOverlay extends PureComponent {
       // inProgress:  percents > 0,
       // uiState: percents > 0  ? 'FROMIMAGE' : 'OVERLAY'
     });
-
+    console.log('%: ' + percents);
     if (percents <= 0) {
-      // console.log('after anim' + this.state.uiState);
+      console.log('after anim: ' + this.state.uiState);
       const uiState = transition(this.state.uiState, 'endAnimation');
       this.execCmd(uiState);
+      console.log('after anim: ' + this.state.uiState);
     }
     // if (percents >= 100) {
-    //   // console.log('after anim: ' + this.state.uiState);
-    //   const uiState = transition(this.state.uiState, 'endAnimation')
+    //   console.log('after anim: ' + this.state.uiState);
+    //   const uiState = transition(this.state.uiState, 'back')
     //   this.execCmd(uiState);
+    //   console.log('after anim: ' + this.state.uiState);
     // }
    // set state IMAGE || FROMOVERLAY and animation progress
   }
