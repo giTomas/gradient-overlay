@@ -1,3 +1,5 @@
+import memoize from 'lodash.memoize';
+
 
 class AniM {
   constructor(draw, nf=50) {
@@ -15,7 +17,7 @@ class AniM {
   // _dir = -1;
 
   startAni = ({duration, draw, timingKey, easeKey}) => {
-    this._makeEaseTiming(timingKey, easeKey);
+    this._timingEaseFn = this._makeEaseTiming(timingKey, easeKey);
     this._duration = duration;
     this._draw = draw;
     // direction of anim decrease increase
@@ -70,11 +72,13 @@ class AniM {
     return keys;
   }
 
-  _makeEaseTiming = (timingKey, easeKey) => {
+  _makeET = (timingKey, easeKey) => {
     const easeFn = this._ease[this._checkKey(this._ease, easeKey)];
     const timingFn = this._timing[this._checkKey(this._timing, timingKey)];
-    this._timingEaseFn = easeFn(timingFn);
+    return easeFn(timingFn);
   }
+
+  _makeEaseTiming = memoize(this._makeET)
 
   _checkKey = (keys, key) => {
     // if (typeof key !== 'string' || key instanceof String) throw new Error(`Key "${key}" is not string`)

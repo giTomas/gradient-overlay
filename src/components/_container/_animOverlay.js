@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import memoize from 'lodash.memoize';
 import {Background, Overlay, Panel} from '../_styled';
 import {initialState, transition} from '../../finiteStateMachine';
 import img from '../../images/jens-lelie-15662-unsplash-crop.jpg';
@@ -145,7 +146,7 @@ class AnimOverlay extends PureComponent {
       // inProgress: percents < 100,
       // uiState: percents < 100 ? 'FROMVERLAY' : 'IMAGE'
     });
-    console.log('%: ' + percents);
+    // console.log('%: ' + percents);
     if (percents >= 100) {
       // console.log('after anim: ' + this.state.uiState);
       const uiState = transition(this.state.uiState, 'endAnimation')
@@ -160,6 +161,8 @@ class AnimOverlay extends PureComponent {
     // }
   }
 
+  // drawOverlayOff = memoize(this._drawOverlayOff)
+
   drawOverlayOn = (progress) => {
     const percents = (1 - progress) * 100;
     this.setState({
@@ -167,7 +170,7 @@ class AnimOverlay extends PureComponent {
       // inProgress:  percents > 0,
       // uiState: percents > 0  ? 'FROMIMAGE' : 'OVERLAY'
     });
-    console.log('%: ' + percents);
+    // console.log('%: ' + percents);
     if (percents <= 0) {
       // console.log('after anim: ' + this.state.uiState);
       const uiState = transition(this.state.uiState, 'endAnimation');
@@ -182,6 +185,8 @@ class AnimOverlay extends PureComponent {
     // }
    // set state IMAGE || FROMOVERLAY and animation progress
   }
+
+  // drawOverlayOn = memoize(this._drawOverlayOn)
 }
 
 export default AnimOverlay;
