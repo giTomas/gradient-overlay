@@ -5,7 +5,6 @@ class AniM {
     this._NF = nf;
     this.ease = this._getKeys('ease');
     this.timing = this._getKeys('timing');
-
   }
 
   _start = null;

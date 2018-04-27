@@ -147,10 +147,10 @@ class AnimOverlay extends PureComponent {
     });
     console.log('%: ' + percents);
     if (percents >= 100) {
-      console.log('after anim: ' + this.state.uiState);
+      // console.log('after anim: ' + this.state.uiState);
       const uiState = transition(this.state.uiState, 'endAnimation')
       this.execCmd(uiState);
-      console.log('after anim: ' + this.state.uiState);
+      // console.log('after anim: ' + this.state.uiState);
     }
     // if (percents <= 0) {
     //   console.log('after anim: ' + this.state.uiState);
@@ -169,10 +169,10 @@ class AnimOverlay extends PureComponent {
     });
     console.log('%: ' + percents);
     if (percents <= 0) {
-      console.log('after anim: ' + this.state.uiState);
+      // console.log('after anim: ' + this.state.uiState);
       const uiState = transition(this.state.uiState, 'endAnimation');
       this.execCmd(uiState);
-      console.log('after anim: ' + this.state.uiState);
+      // console.log('after anim: ' + this.state.uiState);
     }
     // if (percents >= 100) {
     //   console.log('after anim: ' + this.state.uiState);
