@@ -2,25 +2,34 @@ import React, { PureComponent } from 'react';
 import {Background, Overlay, Panel} from '../_styled';
 import {initialState, transition} from '../../finiteStateMachine';
 import img from '../../images/jens-lelie-15662-unsplash-crop.jpg';
-import {anim} from '../../animation/';
+// import {anim} from '../../animation/';
+import {AniM} from '../../animation/';
 
 class AnimOverlay extends PureComponent {
   constructor(props) {
     super(props);
 
+    this.anim = new AniM(this.log)
+
     this.state = {
       coords: { x: 0, y: 0 },
-      ease: anim.ease,
-      timing: anim.timing,
+      ease: this.anim.ease,
+      timing: this.anim.timing,
       anim: {
-        ease: anim.ease[0],
-        timing: anim.timing[0],
+        ease: this.anim.ease[0],
+        timing: this.anim.timing[0],
       },
       progress: 0,
       inProgress: false,
       duration: 750,
       uiState: initialState
     }
+
+
+  }
+
+  log(p) {
+    console.log(p);
   }
 
   render() {
@@ -62,6 +71,8 @@ class AnimOverlay extends PureComponent {
     // console.log('prog: ' + this.state.progress)
     const newUiState = transition(this.state.uiState, 'startAnimation')
     this.execCmd(newUiState);
+
+    // this.anim.startAni({duration: 500})
   }
 
   execCmd = (uiState, action={}) => {
@@ -74,19 +85,29 @@ class AnimOverlay extends PureComponent {
        case ('FROMIMAGE'):
          this.setState({uiState});
          // console.log(`action ${cmd} --> uiState ${uiState}`)
-         anim.animate({
-           timingKey: this.state.anim.timing,
-           easeKey: this.state.anim.ease,
-           draw: this.drawOverlayOn,
-           duration: this.state.duration})
+         // anim.animate({
+         //   timingKey: this.state.anim.timing,
+         //   easeKey: this.state.anim.ease,
+         //   draw: this.drawOverlayOn,
+         //   duration: this.state.duration})
+          this.anim.startAni({
+            timingKey: this.state.anim.timing,
+            easeKey: this.state.anim.ease,
+            duration: this.state.duration,
+            draw: this.drawOverlayOn})
          break;
        case ('FROMOVERLAY'):
          this.setState({uiState});
-         anim.animate({
+         // anim.animate({
+         //   timingKey: this.state.anim.timing,
+         //   easeKey: this.state.anim.ease,
+         //   draw: this.drawOverlayOff,
+         //   duration: this.state.duration})
+         this.anim.startAni({
            timingKey: this.state.anim.timing,
            easeKey: this.state.anim.ease,
-           draw: this.drawOverlayOff,
-           duration: this.state.duration})
+           duration: this.state.duration,
+           draw: this.drawOverlayOff})
          break;
        case ('IMAGE'):
          this.setState({uiState});
@@ -129,7 +150,12 @@ class AnimOverlay extends PureComponent {
       // console.log('after anim: ' + this.state.uiState);
       const uiState = transition(this.state.uiState, 'endAnimation')
       this.execCmd(uiState);
-  }
+    }
+    // if (percents <= 0) {
+    //   // console.log('after anim' + this.state.uiState);
+    //   const uiState = transition(this.state.uiState, 'endAnimation');
+    //   this.execCmd(uiState);
+    // }
   }
 
   drawOverlayOn = (progress) => {
@@ -145,6 +171,11 @@ class AnimOverlay extends PureComponent {
       const uiState = transition(this.state.uiState, 'endAnimation');
       this.execCmd(uiState);
     }
+    // if (percents >= 100) {
+    //   // console.log('after anim: ' + this.state.uiState);
+    //   const uiState = transition(this.state.uiState, 'endAnimation')
+    //   this.execCmd(uiState);
+    // }
    // set state IMAGE || FROMOVERLAY and animation progress
   }
 }

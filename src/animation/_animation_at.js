@@ -7,6 +7,7 @@ export class Animation_at {
   animate() {
     if (this._rID) this.stopAni();
     this._dir *= -1;
+    // console.log('dir: ' + this._dir)
     this._update()
   }
 
@@ -21,7 +22,9 @@ export class Animation_at {
 
   _update = () => {
     this._f += this._dir
+    // console.log('this.f: ' + this._f)
     let k = this._f/this._NF
+    // console.log('k: ' + k)
 
     let progress = +(k * 100).toFixed(2);
     this._draw({progress});
