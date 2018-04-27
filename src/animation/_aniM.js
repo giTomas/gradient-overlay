@@ -7,6 +7,7 @@ class AniM {
     this._NF = nf;
     this.ease = this._getKeys('ease');
     this.timing = this._getKeys('timing');
+    this._makeEaseTiming = memoize(this._makeET)
   }
 
   _start = null;
@@ -78,7 +79,6 @@ class AniM {
     return easeFn(timingFn);
   }
 
-  _makeEaseTiming = memoize(this._makeET)
 
   _checkKey = (keys, key) => {
     // if (typeof key !== 'string' || key instanceof String) throw new Error(`Key "${key}" is not string`)
