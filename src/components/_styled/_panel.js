@@ -167,18 +167,18 @@ const msg = {
   'FROMOVERLAY': 'Animation!'
 }
 
-const Panel = ({ease, timing, anim, duration, uiState, onChangeRangeHandler, onChangeRadionHandler}) => (
+const Panel = ({ease, timing, anim, duration, uiState, onChangeRangeHandler, onChangeRadioHandler}) => (
   <Container>
     {/* <Text>Click on {progress === 100 ? 'the image' : 'the yellow screen'}.</Text> */}
     <Text>{msg[uiState]}</Text>
     <Form>
       <Fieldset>
         <Legend>Timing:</Legend>
-        <Choices items={timing} state={anim.timing} handleChange={onChangeRadionHandler('timing')}/>
+        <Choices items={timing} state={anim.timing} handleChange={onChangeRadioHandler('timing')}/>
       </Fieldset>
       <Fieldset>
         <Legend>Ease:</Legend>
-        <Choices items={ease} state={anim.ease} handleChange={onChangeRadionHandler('ease')}/>
+        <Choices items={ease} state={anim.ease} handleChange={onChangeRadioHandler('ease')}/>
       </Fieldset>
       <Fieldset>
         <Legend>Duration:</Legend>

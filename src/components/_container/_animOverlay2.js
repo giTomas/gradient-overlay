@@ -4,13 +4,13 @@ import {Background, Overlay, Panel} from '../_styled';
 import {initialState, transition} from '../../finiteStateMachine';
 import img from '../../images/jens-lelie-15662-unsplash-crop.jpg';
 // import {anim} from '../../animation/';
-import {AniM} from '../../animation/';
+import {AniC} from '../../animation/';
 
-class AnimOverlay extends PureComponent {
+class AnimOverlay2 extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.anim = new AniM(this.log)
+    this.anim = new AniC(this.log)
 
     this.state = {
       coords: { x: 0, y: 0 },
@@ -21,16 +21,15 @@ class AnimOverlay extends PureComponent {
         timing: this.anim.timing[0],
       },
       progress: 0,
+      fps: 90,
       inProgress: false,
       duration: 750,
       uiState: initialState
     }
-
-
   }
 
   log(p) {
-    console.log(p);
+    console.log('progress: ' + p);
   }
 
   render() {
@@ -70,8 +69,16 @@ class AnimOverlay extends PureComponent {
     // this.toggleAnimation();
     // console.log('initState: ' + this.state.uiState);
     // console.log('prog: ' + this.state.progress)
+
     const newUiState = transition(this.state.uiState, 'startAnimation')
     this.execCmd(newUiState);
+
+    // this.anim.start({
+    //   timingKey: this.state.anim.timing,
+    //   easeKey: this.state.anim.ease,
+    //   duration: this.state.duration,
+    //   // draw: this.drawOverlayOn
+    // })
 
     // this.anim.startAni({duration: 500})
   }
@@ -91,11 +98,13 @@ class AnimOverlay extends PureComponent {
          //   easeKey: this.state.anim.ease,
          //   draw: this.drawOverlayOn,
          //   duration: this.state.duration})
-          this.anim.startAni({
+          this.anim.start({
             timingKey: this.state.anim.timing,
             easeKey: this.state.anim.ease,
             duration: this.state.duration,
-            draw: this.drawOverlayOn})
+            draw: this.drawOverlayOn,
+            fps: this.state.fps,
+          })
          break;
        case ('FROMOVERLAY'):
          this.setState({uiState});
@@ -104,11 +113,13 @@ class AnimOverlay extends PureComponent {
          //   easeKey: this.state.anim.ease,
          //   draw: this.drawOverlayOff,
          //   duration: this.state.duration})
-         this.anim.startAni({
+         this.anim.start({
            timingKey: this.state.anim.timing,
            easeKey: this.state.anim.ease,
            duration: this.state.duration,
-           draw: this.drawOverlayOff})
+           draw: this.drawOverlayOff,
+           fps: this.state.fps,
+         })
          break;
        case ('IMAGE'):
          this.setState({uiState});
@@ -189,4 +200,4 @@ class AnimOverlay extends PureComponent {
   // drawOverlayOn = memoize(this._drawOverlayOn)
 }
 
-export default AnimOverlay;
+export default AnimOverlay2;

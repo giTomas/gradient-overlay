@@ -5,9 +5,10 @@ import  Animation_at3 from './_animation_at3';
 import  Animation_at4 from './_animation_at4';
 import  Animation_onClick from './_animation_onClick';
 import  AniM from './_aniM';
+import  AniC from './_aniC';
 
 // instantiate singleton for further use
 const anim = new Animation();
 // const anim_at = new Animation_at()
 
-export {anim, Animation_at, Animation_at2, Animation_at3, Animation_at4, Animation_onClick, AniM};
+export {anim, Animation_at, Animation_at2, Animation_at3, Animation_at4, Animation_onClick, AniM, AniC};
