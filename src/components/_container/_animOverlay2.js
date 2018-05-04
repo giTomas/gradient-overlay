@@ -4,7 +4,8 @@ import {Background, Overlay, Panel} from '../_styled';
 import {initialState, transition} from '../../finiteStateMachine';
 import img from '../../images/jens-lelie-15662-unsplash-crop.jpg';
 // import {anim} from '../../animation/';
-import {AniC} from '../../animation/';
+// import {AniC} from '../../animation/';
+import {AniC2 as AniC} from '../../animation/';
 
 class AnimOverlay2 extends PureComponent {
   constructor(props) {
@@ -45,11 +46,17 @@ class AnimOverlay2 extends PureComponent {
     );
   }
 
-  handleOnChangeRange = ({target}) => {
+  // handleOnChangeRange = ({target}) => {
+  //   this.setState({
+  //     duration: target.value
+  //   })
+  // }
+
+  handleOnChangeRange = (type) => ({target}) => {
     this.setState({
-      duration: target.value
+      [type]: target.value
     })
-  }
+  };
 
   handleOnChangeRadio = (type) => ({target}) => {
     this.setState((prevState, props) => ({
@@ -57,7 +64,7 @@ class AnimOverlay2 extends PureComponent {
     }));
     // console.log(type)
     // setTimeout(()=>{console.log(this.state.anim)}, 100)
-  }
+  };
 
   handleClick = ({clientX, clientY}) => {
     this.setState({

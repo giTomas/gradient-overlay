@@ -7,7 +7,7 @@ class AnimGradientOnClick extends PureComponent {
     super(props);
 
     // do tehe binding
-    this.anim = new Animation_onClick(this._draw, 70);
+    this.anim = new Animation_onClick(this._draw, 62);
     this.state = {
       progress: 100,
       colorSwap: true,

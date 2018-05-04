@@ -167,7 +167,8 @@ const msg = {
   'FROMOVERLAY': 'Animation!'
 }
 
-const Panel = ({ease, timing, anim, duration, uiState, onChangeRangeHandler, onChangeRadioHandler}) => (
+const Panel = (
+  {ease, timing, anim, duration, uiState, onChangeRangeHandler, onChangeRadioHandler, fps}) => (
   <Container>
     {/* <Text>Click on {progress === 100 ? 'the image' : 'the yellow screen'}.</Text> */}
     <Text>{msg[uiState]}</Text>
@@ -188,7 +189,18 @@ const Panel = ({ease, timing, anim, duration, uiState, onChangeRangeHandler, onC
           max="1350"
           step="150"
           value={duration}
-          onChange={onChangeRangeHandler}
+          onChange={onChangeRangeHandler('duration')}
+          disabled=""/>
+      </Fieldset>
+      <Fieldset>
+        <Legend>Frame rate:</Legend>
+      <RangeLabel>{fps}fps</RangeLabel>
+        <Range
+          min="10"
+          max="100"
+          step="5"
+          value={fps}
+          onChange={onChangeRangeHandler('fps')}
           disabled=""/>
       </Fieldset>
     </Form>

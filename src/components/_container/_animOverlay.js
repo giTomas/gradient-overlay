@@ -46,11 +46,17 @@ class AnimOverlay extends PureComponent {
     );
   }
 
-  handleOnChangeRange = ({target}) => {
+  // handleOnChangeRange = ({target}) => {
+  //   this.setState({
+  //     duration: target.value
+  //   })
+  // }
+
+  handleOnChangeRange = (type) => ({target}) => {
     this.setState({
-      duration: target.value
+      [type]: target.value
     })
-  }
+  };
 
   handleOnChangeRadio = (type) => ({target}) => {
     this.setState((prevState, props) => ({

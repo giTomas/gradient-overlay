@@ -3,22 +3,19 @@ import memoize from 'lodash.memoize';
 
 
 class AniM extends Timings {
-  constructor(draw, nf=50) {
+  constructor(draw) {
     super();
     this._draw = draw;
-    this._NF = nf;
     this.ease = this._getKeys('ease');
     this.timing = this._getKeys('timing');
     this._makeEaseTiming = memoize(this._makeET);
-
   }
 
   _start = null;
   _rID = null;
-  _f = 1;
   _duration = 2000;
   _timingEaseFn = null;
-  // _dir = -1;
+
 
   startAni = ({duration, draw, timingKey, easeKey}) => {
     this._timingEaseFn = this._makeEaseTiming(timingKey, easeKey);
@@ -38,21 +35,11 @@ class AniM extends Timings {
 
   _update = (timestamp) => {
     if (!this._start) this._start = timestamp;
-    // let fraction = ((timestamp - this._start) / this._duration).toFixed(2);
     let fraction = ((timestamp - this._start) / this._duration);
-
-
-    if (fraction > 1) {
-      fraction= 1
-    };
-
+    if (fraction > 1) fraction = 1
     let progress = this._timingEaseFn(fraction);
-    // this._draw(progress*this._dir);
     this._draw(progress);
-
-    if (fraction < 1) {
-      this._rID  = window.requestAnimationFrame(this._update);
-    }
+    if (fraction < 1) this._rID  = window.requestAnimationFrame(this._update);
   }
 }
 
